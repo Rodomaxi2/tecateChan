@@ -1,17 +1,23 @@
-#ifndef Lineas_h
-#define Lineas_h
-
 #include "Arduino.h"
+#include "Lineas.h"
 
-class Lineas
+
+
+Lineas::Lineas(int _pin)
+     {
+        pin = _pin;
+        pinMode(pin, INPUT);
+     }
+
+bool Lineas::detectar()
 {
-  public:
-    int pinA, pinB, EN;
-    
-    Motor(int _EN, int _pinA, int _pinB);
-    void adelante();
-    void atras();
-    void parar();
-};
-
-#endif
+	int value = 0;
+  	value = digitalRead(pin);
+  	if(value == LOW){
+    return true;
+  }
+  else{
+    return false;
+  }
+  delay(300);
+}     

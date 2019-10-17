@@ -6,7 +6,7 @@
 class Motor
 {
   public:
-    int pinA, pinB, EN;
+    int pinA, pinB, EN; //se declaran las variables basicas
     
     Motor(int _EN, int _pinA, int _pinB);
     void adelante();
