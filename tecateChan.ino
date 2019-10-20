@@ -2,6 +2,7 @@
 
 
 Motor motor(10,9,8);
+
 void setup() {
   // put your setup code here, to run once:
 
