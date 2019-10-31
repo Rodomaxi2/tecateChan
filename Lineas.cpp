@@ -11,13 +11,18 @@ Lineas::Lineas(int _pin)
 
 bool Lineas::detectar()
 {
+
 	int value = 0;
-  	value = digitalRead(pin);
-  	if(value == LOW){
+  value = digitalRead(pin);
+  if(value == LOW)
+  {
     return true;
   }
-  else{
+
+  else
+  {
     return false;
   }
+  
   delay(300);
 }     
