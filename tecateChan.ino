@@ -2,7 +2,8 @@
 #include "Ultrasonico.h"
 
 
-Motor motor(10,9,8);
+Motor m1(10,9,8);
+Motor m2(5,6,7);
 
 void setup() {
   // put your setup code here, to run once:
@@ -10,13 +11,13 @@ void setup() {
 }
 
 void loop() {
-  motor.adelante();
+  m1.adelante();
   delay(7000);
-  motor.atras();
+  m1.atras();
   delay(5000);
-  motor.adelante();
+  m1.adelante();
   delay(7000);
-  motor.parar();
+  m1.parar();
   delay(4000);
 
 }
