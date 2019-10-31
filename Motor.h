@@ -12,6 +12,7 @@ class Motor
     void adelante();
     void atras();
     void parar();
+    void parar(int);
 };
 
 #endif

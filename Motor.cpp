@@ -15,6 +15,7 @@ Motor::Motor(int _EN, int _pinA, int _pinB)
 
 void Motor::adelante()
 {
+	//parar(100);
 	//Direccion de motor
 	digitalWrite(pinA, HIGH);
 	digitalWrite(pinB, LOW);
@@ -23,6 +24,7 @@ void Motor::adelante()
 
 void Motor::atras()
 {
+	//parar(100);
 	//Direccion de motor
 	digitalWrite(pinA, LOW);
 	digitalWrite(pinB, HIGH);
@@ -35,4 +37,13 @@ void Motor::parar()
 	digitalWrite(pinA, LOW);
 	digitalWrite(pinB, LOW);
 	analogWrite(EN, 0); //Velocidad de motor
+}
+
+void Motor::parar(int tiempo)
+{
+	//Direccion de motor
+	digitalWrite(pinA, LOW);
+	digitalWrite(pinB, LOW);
+	analogWrite(EN, 0); //Velocidad de motor
+	delay(tiempo);
 }
