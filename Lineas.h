@@ -6,10 +6,12 @@
 class Lineas
 {
   public:
-    int pin;
+    int pin, analogico, valor;
     
+    Lineas(int _pin , int _analogico);
     Lineas(int _pin);
     bool detectar();
+    bool detectarAn();
 };
 
 
