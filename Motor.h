@@ -9,6 +9,7 @@ class Motor
     int pinA, pinB, EN; //se declaran las variables basicas
     
     Motor(int _EN, int _pinA, int _pinB);
+    Motor();
     void adelante();
     void atras();
     void parar();

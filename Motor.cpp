@@ -1,7 +1,7 @@
 #include "Arduino.h"
 #include "Motor.h"
 
-Motor::Motor(int _EN, int _pinA, int _pinB)
+Motor::Motor(int _EN = 0, int _pinA = 0, int _pinB = 0) //Constructor que asigna los pines, 0 por defecto
      {
         pinA = _pinA;
         pinB = _pinB;
@@ -11,9 +11,9 @@ Motor::Motor(int _EN, int _pinA, int _pinB)
         pinMode(EN, OUTPUT);
   		pinMode(pinA, OUTPUT);
   		pinMode(pinB, OUTPUT);
-     }
+     } 
 
-void Motor::adelante()
+void Motor::adelante() //avanza por tiempo indefinido
 {
 	//parar(100);
 	//Direccion de motor
@@ -22,7 +22,7 @@ void Motor::adelante()
 	analogWrite(EN,255); //velocidad de motor
 }
 
-void Motor::atras()
+void Motor::atras() //da marcha atras por tiempo indefinido
 {
 	//parar(100);
 	//Direccion de motor
@@ -31,7 +31,7 @@ void Motor::atras()
 	analogWrite(EN,128); //velocidad de motor
 }
 
-void Motor::parar()
+void Motor::parar() //Detiene el motor por tiempo indefinido
 {
 	//Direccion de motor
 	digitalWrite(pinA, LOW);
@@ -39,7 +39,7 @@ void Motor::parar()
 	analogWrite(EN, 0); //Velocidad de motor
 }
 
-void Motor::parar(int tiempo)
+void Motor::parar(int tiempo) //Funcion parar que recibe un valor que recibe el tiempo que detiene los motores y despues hace un delay por el tiempo indicado
 {
 	//Direccion de motor
 	digitalWrite(pinA, LOW);
