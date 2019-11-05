@@ -1,8 +1,6 @@
 #include "Arduino.h"
 #include "Lineas.h"
 
-
-
 Lineas::Lineas(int _pin)
      {
         pin = _pin;
@@ -23,6 +21,4 @@ bool Lineas::detectar()
   {
     return false;
   }
-  
-  delay(300);
 }     
