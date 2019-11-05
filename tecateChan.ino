@@ -4,15 +4,16 @@
 #include "SisMotores.h"
 
 
-Motor R1(10,9,8); //ENB INT4 INT3
-Motor R2(36, 38, 40);
-Motor L1(5,6,7);
-Motor L2(28, 30, 32);
+Motor R2(5,6,7);
+Motor R1(36, 38, 40);
+Motor L2(10,8,9);
+Motor L1(28, 30, 32);
 
 //SisMotores motores(R1, R2, L1, L2);
 
-//Ultrasonico sensor(24,22);
-Lineas linea(25);
+Ultrasonico sensor(24,22);
+Lineas lineaL(25);
+Lineas lineaR(31);
 
 void setup() {
   // put your setup code here, to run once:
@@ -20,21 +21,21 @@ void setup() {
 }
 
 void loop() {
-
-  R1.adelante();
-  R2.adelante();
-  L1.adelante();
-  L2.adelante();
-
-  /*
-  if(sensor.distancia() <20.0 and linea.detectar())
+  
+  if(sensor.distancia() <20.0 && lineaL.detectar() &&lineaR.detectar())
   {
      R1.adelante();
+     L1.adelante();
+     R2.adelante();
+     L2.adelante();
   }
   else
   {
-    R1.parar(1000);
+    R1.parar();
+    L1.parar();
+    R2.parar();
+    L2.parar();
   }
-  */
+  
  
 }

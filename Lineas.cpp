@@ -7,7 +7,7 @@ Lineas::Lineas(int _pin)
         pinMode(pin, INPUT);
      }
 
-bool Lineas::detectar()
+bool Lineas::detectar() //esta funcion detecta si esta obscuro regresara true
 {
 
 	int value = 0;
