@@ -9,7 +9,7 @@ class Motor
     int pinA, pinB, EN; //se declaran las variables basicas
     
     Motor(int _EN, int _pinA, int _pinB);
-    Motor();
+    Motor* 	asignar(Motor *from);
     void adelante();
     void atras();
     void parar();

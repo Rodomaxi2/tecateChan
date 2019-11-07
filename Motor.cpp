@@ -47,3 +47,10 @@ void Motor::parar(int tiempo) //Funcion parar que recibe un valor que recibe el 
 	analogWrite(EN, 0); //Velocidad de motor
 	delay(tiempo);
 }
+
+
+Motor* 	Motor::asignar(Motor *from)
+{
+	Motor *rtn = new Motor(from ->EN, from-> pinA, from->pinB);
+	return rtn;
+}
