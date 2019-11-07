@@ -26,12 +26,30 @@ class SisMotores
             R2->adelante();
         }
 
+        void atras()
+        {
+            L1->atras();
+            L2->atras();
+            R1->atras();
+            R2->atras();
+        }
+
         void parar()//detiene todos los motores
         {
             L1->parar();
             L2->parar();
             R1->parar();
             R2->parar();
+        }
+
+        void giroIzq() //gira a la izquierda
+        {
+            //
+        }
+
+        void giroDer() //gira a la derecha
+        {
+            //
         }
 
 
