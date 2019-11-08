@@ -8,13 +8,13 @@
 Motor R2(5,6,7);
 Motor R1(36, 38, 40);
 Motor L2(10,8,9);
-Motor   L1(28, 30, 32);
+Motor L1(28, 30, 32);
 
 SisMotores motores(R1, R2, L1, L2);
 
 //Sensores ultrasonicos
-Ultrasonico sensor1(49,51);
-Ultrasonico sensor2(33,34);
+Ultrasonico sensor1(2,3);
+Ultrasonico sensor2(35,34);
 Ultrasonico sensor3(9,52);
 
 SisUltra sensores(sensor1, sensor2, sensor3);
@@ -28,6 +28,9 @@ Lineas lineaF(A2);
 //Funciones
 
 void ataque();
+void buscar();
+void enemigoDer();
+void enemigoIzq();
 
 
 void setup() {
@@ -37,17 +40,42 @@ void setup() {
 }
 
 void loop() {
+  
+  ataque();
+  Serial.println(sensores.distancia(1));
+ 
+}
 
-  if(sensores.distancia(1) > 15.0)
+void ataque()
+{
+  while(sensores.distancia(1) < 20)
   {
-    Serial.println(sensores.distancia(1));
-     motores.adelante();
+    motores.adelante();
   }
-  else
+  motores.parar();
+  buscar();
+}
+
+void buscar()
+{
+  //
+}
+
+void enemigoDer()
+{
+  while(sensores.distancia(1) > 20)
   {
-    Serial.println(sensores.distancia(1));  
-    motores.parar();
+    motores.giroCerradoDer();
   }
- 
- 
+  ataque();
+}
+
+void enemigoIzq()
+{
+  while(sensores.distancia(1) > 20)
+  {
+    motores.giroCerradoIzq();
+  }
+  ataque();
+   
 }
