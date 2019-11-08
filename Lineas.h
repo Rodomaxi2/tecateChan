@@ -6,12 +6,33 @@
 class Lineas
 {
   public:
-    int pin, analogico, valor;
-    
-    Lineas(int _pin , int _analogico);
-    Lineas(int _pin);
-    bool detectar();
-    bool detectarAn();
+    int analogico, valor;
+
+	Lineas(int _analogico)
+	{
+	    analogico = _analogico;
+	    pinMode(analogico, INPUT);
+	}
+
+	Lineas()
+	{
+	    analogico = 0;
+	    pinMode(analogico, INPUT);
+	}
+
+	bool detectar()
+	{
+	    valor = analogRead(analogico); //esta funcion detecta brillo y  regresara true
+	    if(valor < 800)
+	    {
+	        return false;
+	    }
+	    else
+	    {
+	        return true;
+	    }
+	} 
+
 };
 
 
