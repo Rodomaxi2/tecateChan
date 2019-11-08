@@ -30,7 +30,7 @@ void loop() {
   }
   else
   {
-    motres.parar();
+    motores.parar();
   }
  
  
