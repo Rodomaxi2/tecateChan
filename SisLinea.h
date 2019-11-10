@@ -18,22 +18,22 @@ class SisLinea
 		}
 
 		//estas funciones no coinciden con la descripcion por el cambio en "Lineas.h"
-		void detectar() //esta funcion detecta brillo en cualquier sensor y regresara true
+		bool detectar() //esta funcion detecta brillo en cualquier sensor y regresara true
 		{
 			return front.detectar() || left.detectar() || right.detectar();
 		}
 
-		void detectarL()
+		bool detectarL()
 		{
 			return left.detectar();
 		}
 
-		void detectarF()
+		bool detectarF()
 		{
 			return front.detectar();
 		}
 
-		void detectarR()
+		bool detectarR()
 		{
 			return right.detectar();
 		}

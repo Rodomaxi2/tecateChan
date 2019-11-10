@@ -18,7 +18,7 @@ Ultrasonico sensorL(2,3);
 Ultrasonico sensorF(35,34);
 Ultrasonico sensorR(9,52);
 
-SisUltra sensores(sensor1, sensor2, sensor3); //Orden de los sensores Izquierda Frente Derecha
+SisUltra sensores(sensorL, sensorF, sensorR); //Orden de los sensores Izquierda Frente Derecha
 
 //Sensores seguilineas
 Lineas lineaL(A0);
@@ -79,7 +79,7 @@ void enemigoDer() //si se detecta un enemigo a la derecha girara hasta que lo te
 
 void enemigoIzq()
 {
-  while(sensores.distancia(1) > 20 && )
+  while(sensores.distancia(1) > 20 )
   {
     motores.giroCerradoIzq();
   }

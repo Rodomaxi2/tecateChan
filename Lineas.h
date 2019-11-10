@@ -36,7 +36,7 @@ class Lineas
 	}
 
 
-	//Esta funcion trabaja correctamenten
+	//Esta funcion trabaja correctamente
 	/*
 	bool detectar()
 	{
