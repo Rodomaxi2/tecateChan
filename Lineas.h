@@ -20,6 +20,24 @@ class Lineas
 	    pinMode(analogico, INPUT);
 	}
 
+
+	//esta funcion necesita pruebas
+	bool detectar()
+	{
+	    valor = analogRead(analogico); //esta funcion detecta brillo y  regresara false
+	    if(valor < 800)
+	    {
+	        return true;
+	    }
+	    else
+	    {
+	        return false;
+	    }
+	}
+
+
+	//Esta funcion trabaja correctamenten
+	/*
 	bool detectar()
 	{
 	    valor = analogRead(analogico); //esta funcion detecta brillo y  regresara true
@@ -32,6 +50,7 @@ class Lineas
 	        return true;
 	    }
 	} 
+	*/
 
 };
 
