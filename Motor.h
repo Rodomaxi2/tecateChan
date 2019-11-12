@@ -21,6 +21,12 @@ class Motor
   		pinMode(pinB, OUTPUT);
      } 
 
+    Motor* asignar(Motor *from)
+	{
+		Motor *rtn = new Motor(from ->EN, from-> pinA, from->pinB);
+		return rtn;
+	}
+
 	void adelante() //avanza por tiempo indefinido
 	{
 		//parar(100);
@@ -57,11 +63,7 @@ class Motor
 	}
 
 
-	Motor* asignar(Motor *from)
-	{
-		Motor *rtn = new Motor(from ->EN, from-> pinA, from->pinB);
-		return rtn;
-	}
+	
 };
 
 #endif

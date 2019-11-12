@@ -22,6 +22,7 @@ class Lineas
 
 
 	//esta funcion necesita pruebas
+	/*
 	bool detectar()
 	{
 	    valor = analogRead(analogico); //esta funcion detecta brillo y  regresara false
@@ -34,10 +35,10 @@ class Lineas
 	        return false;
 	    }
 	}
+	*/
 
 
 	//Esta funcion trabaja correctamente
-	/*
 	bool detectar()
 	{
 	    valor = analogRead(analogico); //esta funcion detecta brillo y  regresara true
@@ -49,8 +50,7 @@ class Lineas
 	    {
 	        return true;
 	    }
-	} 
-	*/
+	}
 
 };
 

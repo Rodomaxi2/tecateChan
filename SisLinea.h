@@ -17,7 +17,6 @@ class SisLinea
 			right = _right;
 		}
 
-		//estas funciones no coinciden con la descripcion por el cambio en "Lineas.h"
 		bool detectar() //esta funcion detecta brillo en cualquier sensor y regresara true
 		{
 			return front.detectar() || left.detectar() || right.detectar();
