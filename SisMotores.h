@@ -70,24 +70,6 @@ class SisMotores
             L1.adelante();
             L2.adelante();
         }
-        
-
-        void giroAmplioIzq() //gira a la izquierda
-        {
-            L1.atras();
-            L2.adelante();
-            R1.adelante();
-            R2.adelante();
-        }
-
-        void giroAmplioDer() //gira a la derecha
-        {
-            R1.atras();
-            R2.adelante();
-            L1.adelante();
-            L2.adelante();
-        }
-
 
 };
 

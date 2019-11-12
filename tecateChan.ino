@@ -5,18 +5,18 @@
 #include "SisUltra.h"
 #include "SisLinea.h"
 
-//Motores
-Motor R2(5,6,7);
-Motor R1(36, 38, 40);
-Motor L2(10,8,9);
-Motor L1(28, 30, 32);
+//Motores EN pinA pinB
+Motor R2(49, 51, 53);
+Motor R1(9, 10, 11);
+Motor L1(5, 6, 7);
+Motor L2(41, 43, 45);
 
 SisMotores motores(R1, R2, L1, L2);
 
 //Sensores ultrasonicos
-Ultrasonico sensorL(2,3);
-Ultrasonico sensorF(35,34);
-Ultrasonico sensorR(9,52);
+Ultrasonico sensorL(100,39);
+Ultrasonico sensorF(22,24);
+Ultrasonico sensorR(1,60);
 
 SisUltra sensores(sensorL, sensorF, sensorR); //Orden de los sensores Izquierda Frente Derecha
 
@@ -33,6 +33,7 @@ void ataque();
 void buscar();
 void enemigoDer();
 void enemigoIzq();
+void pruebaMotores();
 
 //############SETUP##########################
 
@@ -45,9 +46,17 @@ void setup() {
 
 //#############Funcionamiento del robot###########################################
 void loop() {
-  
-  ataque();
-  Serial.println(sensores.distancia(1));
+
+  pruebaMotores();
+  /*
+  motores.giroCerradoDer();
+  delay(5000);
+  motores.giroCerradoIzq();
+  delay(5000);
+  motores.giroAmplioDer();
+  delay(5000);
+  motores.giroAmplioIzq();
+  delay(5000);*/
  
 }
 
@@ -70,7 +79,12 @@ void buscar()
 
 void enemigoDer() //si se detecta un enemigo a la derecha girara hasta que lo tenga enfrente
 {
-  while(sensores.distancia(1) > 20 && lineas.detectar())
+  while(sensores.distancia(1) > 20 && lineas.detectar())R2.atras();
+  delay(3000);
+  L1.adelante();
+  delay(3000);
+  L2.adelante();
+  delay(3000);
   {
     motores.giroCerradoDer();
   }
@@ -79,10 +93,22 @@ void enemigoDer() //si se detecta un enemigo a la derecha girara hasta que lo te
 
 void enemigoIzq()
 {
-  while(sensores.distancia(1) > 20 )
+  while(sensores.distancia(1) > 20 && lineas.detectar())
   {
     motores.giroCerradoIzq();
   }
   ataque();
    
+}
+
+void pruebaMotores()
+{
+  if(sensorF.distancia() < 20)
+  {
+    motores.giroAmplioDer();
+  }
+  else
+  {
+    motores.adelante*();
+  }
 }
