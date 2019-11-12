@@ -6,24 +6,24 @@
 #include "SisLinea.h"
 
 //Motores EN pinA pinB
-Motor R2(49, 51, 53);
-Motor R1(9, 10, 11);
-Motor L1(5, 6, 7);
-Motor L2(41, 43, 45);
+Motor R2(27, 25, 23);
+Motor R1(48, 50, 52);
+Motor L1(49, 51, 53);
+Motor L2(26, 24, 22);
 
 SisMotores motores(R1, R2, L1, L2); //Mmotor R1 R2 L1 L2
 
 //Sensores ultrasonicos
-Ultrasonico sensorL(100,39);
-Ultrasonico sensorF(22,24);
-Ultrasonico sensorR(1,60);
+Ultrasonico sensorL(10,11);
+Ultrasonico sensorF(7,6);
+Ultrasonico sensorR(8,9);
 
 SisUltra sensores(sensorF, sensorL, sensorR); //Orden de los sensores Frente Izquierda Derecha
 
 //Sensores seguilineas
-Lineas lineaL(A0);
-Lineas lineaR(A1);
-Lineas lineaF(A2);
+Lineas lineaL(A7);
+Lineas lineaR(A9);
+Lineas lineaF(A5);
 
 SisLinea lineas(lineaF, lineaL, lineaR); //Orden de los sensores seguilinea Frente Izquierda Derecha
 
@@ -48,15 +48,8 @@ void setup() {
 void loop() {
 
   pruebaMotores();
-  /*
-  motores.giroCerradoDer();
-  delay(5000);
-  motores.giroCerradoIzq();
-  delay(5000);
-  motores.giroAmplioDer();
-  delay(5000);
-  motores.giroAmplioIzq();
-  delay(5000);*/
+  
+ 
  
 }
 
@@ -64,9 +57,18 @@ void loop() {
 
 void ataque()
 {
-  while(sensores.distancia(1) < 20 && lineas.detectarF())
+  while(sensores.distancia(1) < 35 && !lineas.detectarF())
   {
     motores.adelante();
+  }
+  if(lineas.detectarF()){
+    motores.atras();
+      delay(300);
+      motores.parar();
+      motores.giroDer();
+      delay(300);
+      motores.parar();
+      motores.adelante();
   }
   motores.parar();
   buscar();
@@ -75,52 +77,70 @@ void ataque()
 void buscar()
 {
   //
+  if(sensores.distancia(0))
+    ataque();
+  else if(sensores.distancia(1))
+    enemigoIzq();
+  else if(sensores.distancia(2))
+    enemigoDer();
 }
 
 void enemigoDer() //si se detecta un enemigo a la derecha girara hasta que lo tenga enfrente
 {
-  while(sensores.distancia(1) > 20 && lineas.detectar())R2.atras();
-  delay(3000);
-  L1.adelante();
-  delay(3000);
-  L2.adelante();
-  delay(3000);
+  int i=0;
+   while(sensores.distancia(1) > 35 && !lineas.detectar()&&i<300000)
   {
     motores.giroDer();
+    i++;
   }
+  motores.parar();
   ataque();
 }
 
 void enemigoIzq()
 {
-  while(sensores.distancia(1) > 20 && lineas.detectar())
+  while(sensores.distancia(1) > 35 && !lineas.detectar())
   {
     motores.giroIzq();
   }
+  motores.parar();
   ataque();
    
 }
 
 void pruebaMotores()
 {
-  motor.parar();
+  motores.parar();
   if(!lineas.detectar())
   {
-    motores.avanzar();
+    motores.adelante();
+    
   }
   else
   {
     if(lineas.detectarF())
     {
-      motor.atras();
+      motores.atras();
+      delay(300);
+      motores.parar();
+      motores.giroDer();
+      delay(300);
+      motores.parar();
+      motores.adelante();
     }
-    if(lineas.detectarL())
+    else if(lineas.detectarL())
     {
-      motor.giroDer();
+      motores.giroDer();
+      delay(300);
+      motores.parar();
+      motores.adelante();
     }
-    if(lineas.detectarR())
+    else if(lineas.detectarR())
     {
-      motor.giroIzq();
+      motores.giroIzq();
+      delay(300);
+      motores.parar();
+      motores.adelante();
     }
   }
 }
