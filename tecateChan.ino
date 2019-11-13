@@ -65,7 +65,7 @@ void ataque()
   
 }
 
-void buscar()
+void buscar() //funcion principal de pelea
 {
   if(sensores.distancia(1) < 30 && sensores.distancia(1) > 5)
     ataque();
