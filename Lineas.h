@@ -42,7 +42,7 @@ class Lineas
 	bool detectarS()
 	{
 	    valor = analogRead(analogico); //si esta funcion detecta oscuridad regresara true
-	    if(valor < 800)
+	    if(valor < 400)
 	    {
 	        return false;
 	    }

@@ -35,6 +35,7 @@ void enemigoDer();
 void enemigoIzq();
 void pruebaMotores();
 int estado = 0; // 0 parado 1 adelante 2 atras 3 izq 4 der
+bool inicio = true;
 
 //############SETUP##########################
 
@@ -47,8 +48,23 @@ void setup() {
 
 //#############Funcionamiento del robot###########################################
 void loop() {
+  if(inicio)
+  {
+    delay(3750);
+    inicio = false;
+    motores.adelante();
+    estado = 1;
+  }
 
   pruebaMotores();
+  /*if(lineas.detectarF())
+  {
+    motores.adelante();
+  }
+  else
+  {
+    motores.parar();
+  }*/
  
 }
 
@@ -108,20 +124,12 @@ void enemigoIzq()
   ataque();
    
 }
-
+//#####################Batalla
 void pruebaMotores()
 {
   if(lineas.detectar())
   {
-    //if(estado != 1)
-    {
-      buscar();
-      /*
-      motores.parar(100);
-      motores.adelante(100);
-      estado = 1;
-      */
-    } 
+    buscar();
   }
   
   else
