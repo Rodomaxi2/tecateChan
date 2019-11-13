@@ -39,9 +39,9 @@ class Lineas
 
 
 	//Esta funcion trabaja correctamente
-	bool detectar()
+	bool detectarS()
 	{
-	    valor = analogRead(analogico); //esta funcion detecta brillo y  regresara true
+	    valor = analogRead(analogico); //si esta funcion detecta oscuridad regresara true
 	    if(valor < 800)
 	    {
 	        return false;

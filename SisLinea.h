@@ -17,24 +17,24 @@ class SisLinea
 			right = _right;
 		}
 
-		bool detectar() //esta funcion detecta brillo en cualquier sensor y regresara true
+		bool detectar() //esta funcion detecta oscuridad en cualquier sensor y regresara true
 		{
-			return front.detectar() || left.detectar() || right.detectar();
+			return (front.detectarS() && left.detectarS() && right.detectarS());
 		}
 
 		bool detectarL()
 		{
-			return left.detectar();
+			return left.detectarS();
 		}
 
 		bool detectarF()
 		{
-			return front.detectar();
+			return front.detectarS();
 		}
 
 		bool detectarR()
 		{
-			return right.detectar();
+			return right.detectarS();
 		}
 };
 

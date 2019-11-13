@@ -14,7 +14,7 @@ Motor L2(26, 24, 22);
 SisMotores motores(R1, R2, L1, L2); //Mmotor R1 R2 L1 L2
 
 //Sensores ultrasonicos
-Ultrasonico sensorL(10,11);
+Ultrasonico sensorL(11,10);
 Ultrasonico sensorF(7,6);
 Ultrasonico sensorR(8,9);
 
@@ -34,6 +34,7 @@ void buscar();
 void enemigoDer();
 void enemigoIzq();
 void pruebaMotores();
+int estado = 0; // 0 parado 1 adelante 2 atras 3 izq 4 der
 
 //############SETUP##########################
 
@@ -48,8 +49,6 @@ void setup() {
 void loop() {
 
   pruebaMotores();
-  
- 
  
 }
 
@@ -57,90 +56,116 @@ void loop() {
 
 void ataque()
 {
-  while(sensores.distancia(1) < 35 && !lineas.detectarF())
+  if(estado!=1)
   {
+    motores.parar(100);
     motores.adelante();
+    estado = 1;
   }
-  if(lineas.detectarF()){
-    motores.atras();
-      delay(300);
-      motores.parar();
-      motores.giroDer();
-      delay(300);
-      motores.parar();
-      motores.adelante();
-  }
-  motores.parar();
-  buscar();
+  
 }
 
 void buscar()
 {
-  //
-  if(sensores.distancia(0))
+  if(sensores.distancia(1) < 30 && sensores.distancia(1) > 5)
     ataque();
-  else if(sensores.distancia(1))
+  else if(sensores.distancia(0) < 30 && sensores.distancia(0) > 5)
     enemigoIzq();
-  else if(sensores.distancia(2))
+  else if(sensores.distancia(2) < 30 && sensores.distancia(2) > 5)
     enemigoDer();
+  else
+  {
+    
+  }
+   
 }
 
 void enemigoDer() //si se detecta un enemigo a la derecha girara hasta que lo tenga enfrente
 {
-  int i=0;
-   while(sensores.distancia(1) > 35 && !lineas.detectar()&&i<300000)
+  while(sensores.distancia(1) > 35)
   {
-    motores.giroDer();
-    i++;
+    if(estado != 4)
+    {
+      motores.parar();
+      motores.giroDer();
+      estado = 4;
+    }
   }
-  motores.parar();
   ataque();
 }
 
 void enemigoIzq()
 {
-  while(sensores.distancia(1) > 35 && !lineas.detectar())
+  while(sensores.distancia(1) > 35)
   {
-    motores.giroIzq();
+    if(estado != 3)
+    {
+      motores.parar();
+      motores.giroIzq();
+      estado = 3;
+    }
   }
-  motores.parar();
   ataque();
    
 }
 
 void pruebaMotores()
 {
-  motores.parar();
-  if(!lineas.detectar())
+  if(lineas.detectar())
   {
-    motores.adelante();
-    
+    //if(estado != 1)
+    {
+      buscar();
+      /*
+      motores.parar(100);
+      motores.adelante(100);
+      estado = 1;
+      */
+    } 
   }
+  
   else
   {
-    if(lineas.detectarF())
+    if(!lineas.detectarF())
     {
-      motores.atras();
-      delay(300);
-      motores.parar();
-      motores.giroDer();
-      delay(300);
-      motores.parar();
-      motores.adelante();
+      if(estado != 2)
+      {
+        motores.parar(100);
+        motores.atras();
+        delay(200);
+        motores.giroDer();
+        delay(150);
+        estado = 4;
+      }
+      
     }
-    else if(lineas.detectarL())
+    else if(!lineas.detectarL() && lineas.detectarR())
     {
-      motores.giroDer();
-      delay(300);
-      motores.parar();
-      motores.adelante();
+      if(estado != 4)
+      {
+        motores.parar(100);
+        motores.giroDer();
+        estado = 4;
+      }
+      
     }
-    else if(lineas.detectarR())
+    else if(!lineas.detectarR() && lineas.detectarL())
     {
-      motores.giroIzq();
-      delay(300);
-      motores.parar();
-      motores.adelante();
+      if(estado != 3)
+      {
+        motores.parar(100);
+        motores.giroIzq();
+        estado = 3;
+      }
     }
+
+    else if(!lineas.detectarR() && !lineas.detectarL())
+    {
+        motores.parar(100);
+        motores.adelante(100);
+        estado = 1;
+     
+    }
+    
   }
 }

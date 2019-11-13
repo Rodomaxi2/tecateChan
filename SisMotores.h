@@ -21,10 +21,18 @@ class SisMotores
 
         void adelante() //Pone en marcha todos los motores
         {
-            L1.adelante();
-            L2.adelante();
-            R1.adelante();
-            R2.adelante();
+            L1.adelanteM();
+            L2.adelanteM();
+            R1.adelanteM();
+            R2.adelanteM();
+        }
+
+        void adelante(int potencia) //Pone en marcha todos los motores
+        {
+            L1.adelanteM(potencia);
+            L2.adelanteM(potencia);
+            R1.adelanteM(potencia);
+            R2.adelanteM(potencia);
         }
 
         void atras()
@@ -43,20 +51,28 @@ class SisMotores
             R2.parar();
         }
 
+        void parar(int tiempo)//detiene todos los motores
+        {
+            L1.parar(tiempo);
+            L2.parar(tiempo);
+            R1.parar(tiempo);
+            R2.parar(tiempo);
+        }
+
         void giroIzq() //gira a la izquierda
         {
             L1.atras();
             L2.atras();
-            R1.adelante();
-            R2.adelante();
+            R1.adelanteM();
+            R2.adelanteM();
         }
 
         void giroDer() //gira a la derecha
         {
             R1.atras();
             R2.atras();
-            L1.adelante();
-            L2.adelante();
+            L1.adelanteM();
+            L2.adelanteM();
         }
 
 };

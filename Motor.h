@@ -27,13 +27,21 @@ class Motor
 		return rtn;
 	}
 
-	void adelante() //avanza por tiempo indefinido
+	void adelanteM() //avanza por tiempo indefinido
 	{
 		//parar(100);
 		//Direccion de motor
 		digitalWrite(pinA, HIGH);
 		digitalWrite(pinB, LOW);
 		analogWrite(EN,255); //velocidad de motor
+	}
+	void adelanteM(int potencia) //avanza por tiempo indefinido
+	{
+		//parar(100);
+		//Direccion de motor
+		digitalWrite(pinA, HIGH);
+		digitalWrite(pinB, LOW);
+		analogWrite(EN,potencia); //velocidad de motor
 	}
 
 	void atras() //da marcha atras por tiempo indefinido
